@@ -48,7 +48,12 @@ function App() {
     <div>
         <div>
           <Header/>
-         <Producto />
+         <Producto allProducts={allProducts}
+				setAllProducts={setAllProducts}
+				total={total}
+				setTotal={setTotal}
+				countProducts={countProducts}
+				setCountProducts={setCountProducts}/>
          <Footer/>
         </div>
     </div>
