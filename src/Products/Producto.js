@@ -95,7 +95,7 @@ function Producto(props) {
                                     return (<p>
                                         <Button className='info-producto-boton ' variant="primary" id={producto.id} onClick={restarHandler}>—</Button>
 
-                                        <Form.Control className='info-producto-info' type='text' value={"       "+c + " unidades = " + c * producto.precio + " €"} />
+                                        <Form.Control className='info-producto-info' type='text' value={"  "+c + " unidades = " + c * producto.precio + " €"} />
                                         <Button className='info-producto-boton' variant="primary" id={producto.id} onClick={sumarHandler}>+</Button>
                                                                           <p><Button className='info-producto-boton' variant="primary" id={producto.id} onClick={sumarHandler}>COMPRAR</Button></p>
 

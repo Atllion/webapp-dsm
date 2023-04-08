@@ -7,9 +7,9 @@ import Footer from './Componentes/UI/Footer'
 
 
 function App() {
-  const [allProducts, setAllProducts] = useState([]);
+  const [todosProductos, setTodosProductos] = useState([]);
 	const [total, setTotal] = useState(0);
-	const [countProducts, setCountProducts] = useState(0);
+	const [cantidadProducto, setCantidadProducto] = useState(0);
 
   const [productos, setProductos] = useState(
     [
@@ -47,13 +47,8 @@ function App() {
   return (
     <div>
         <div>
-          <Header/>
-         <Producto allProducts={allProducts}
-				setAllProducts={setAllProducts}
-				total={total}
-				setTotal={setTotal}
-				countProducts={countProducts}
-				setCountProducts={setCountProducts}/>
+          <Header total={total} setTotal={setTotal} cantidadProducto={cantidadProducto}  setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos}/>
+         <Producto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto}  setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos}/>
          <Footer/>
         </div>
     </div>
