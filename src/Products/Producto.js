@@ -9,8 +9,7 @@ import Col from 'react-bootstrap/Col';
 import { Datos } from '../Datos';
 
 
-function Producto(props) {
-
+function Producto({todosProductos,setTodosProductos,cantidadProducto,setCantidadProducto,total,setTotal}) {
 
     const [resultado, setResultado] = useState(0);
     const [numero1, setNumero1] = useState(0);
@@ -21,7 +20,7 @@ function Producto(props) {
     const sumarHandler = (e) => {
 
         setNumero1(numero1 + 1);
-        console.log(e.currentTarget.id);
+        //console.log(e.currentTarget.id);
         let aux = e.currentTarget.id - 1;
         //console.log(aux);
         //console.log(resultado)
@@ -38,9 +37,9 @@ function Producto(props) {
         });
 
         const myList = Datos.map((item) => <p>{item.id}</p>)
-        console.log(resultado)
+        //console.log(resultado)
         setCantidad(cantidades);
-        console.log(cantidad);
+        //console.log(cantidad);
 
     }
     const restarHandler = (e) => {
@@ -54,7 +53,7 @@ function Producto(props) {
             //console.log(resultado)
             const cantidades = cantidad.map((c, i) => {
                 if (i === aux) {
-                    console.log(c)
+                    //console.log(c)
                     if (c >=1) {
                     setResultado(c - 1);
                     return c - 1;
@@ -70,11 +69,36 @@ function Producto(props) {
             
             setCantidad(cantidades);
 
-            console.log("asdfghjk")
+            //console.log("asdfghjk")
         
 
     }
 
+    const addCarrito = producto => {
+        
+        if (todosProductos.find(item => item.id === producto.id)) {
+			const productos = todosProductos.map(item =>
+				item.id === producto.id
+					? { ...item, num: item.num + 1 }
+					: item
+			);
+			setTotal(total + producto.precio * producto.num);
+			setCantidadProducto(cantidadProducto + producto.num);
+            console.log("total addcarrtio:" +cantidadProducto);
+			return setTodosProductos([...productos]);
+		}
+        console.log("despues set todosP"+todosProductos)
+		setTotal(total + producto.precio * producto.num);
+		setCantidadProducto(cantidadProducto + producto.num);
+		setTodosProductos([...todosProductos, producto]);
+        console.log("despues set todosP"+total)
+    };
+
+    const addCarrito2 = producto => {
+        setTodosProductos([...todosProductos,producto])
+    }
+    
+    console.log(todosProductos)
     return (
         <div>
             <div className='container-productos'>
@@ -88,22 +112,8 @@ function Producto(props) {
                             <h2>{producto.nombre}</h2>
                             <p className='precio'>{producto.precio} €</p>
 
+                            <button className='info-producto-boton' variant="primary" id={producto.id} onClick={() => addCarrito(producto)}>+</button>
 
-                            {cantidad.map((c, i) => {
-                                if (i === producto.id - 1) {
-                                    <p>sd</p>
-                                    return (<p>
-                                        <Button className='info-producto-boton ' variant="primary" id={producto.id} onClick={restarHandler}>—</Button>
-
-                                        <Form.Control className='info-producto-info' type='text' value={"  "+c + " unidades = " + c * producto.precio + " €"} />
-                                        <Button className='info-producto-boton' variant="primary" id={producto.id} onClick={sumarHandler}>+</Button>
-                                                                          <p><Button className='info-producto-boton' variant="primary" id={producto.id} onClick={sumarHandler}>COMPRAR</Button></p>
-
-                                    </p>
-                                    )
-                                    console.log(resultado)
-                                }
-                            })}
 
                         </div>
                     </div>
@@ -114,7 +124,7 @@ function Producto(props) {
         </div>
 
 
-    );
+    );  
 }
 
 export default Producto;

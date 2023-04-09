@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 1rem 0;
     border-radius: 12px;
     background-color: #2d8f5f;
@@ -19,7 +19,7 @@ header{
 .container-icon{
     position: absolute;
     top: 5%;
-    left: 1%;
+    right: 3%;
     background-color: #ff0000;
     color: #ffffff;
     background-color: #000000;
@@ -33,7 +33,7 @@ header{
 .count-productos{
     position: absolute;
     top: 70%;
-    left: 50%;
+    left: 80%;
 
     background-color: #5500ff;
     color: #fff;
@@ -54,9 +54,9 @@ header{
     position: absolute;
     top: 50px;
     right: 0;
-
-    background-color: #fff;
-    width: 400px;
+color: #2f2b2b;
+    background-color: #7f3a7f;
+    width: 500px;
     z-index: 1;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
     border-radius: 10px;
@@ -124,4 +124,10 @@ header{
 
 .hidden-cart{
     display: none;
+}
+
+
+
+.icon-cart:hover{
+    cursor: pointer;
 }
