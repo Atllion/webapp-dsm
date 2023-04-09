@@ -12,6 +12,16 @@ function Header({todosProductos, setTodosProductos, total, setTotal, cantidadPro
 		{console.log("siiuuuuu")}
 	}else console.log("siiuuuuu"+todosProductos.length) }
 
+	const borrarHandler = producto => {
+		const resultado = todosProductos.filter(
+			item => item.id !== producto.id
+		);
+
+		setTotal(total - producto.precio * producto.num);
+		setCantidadProducto(cantidadProducto - producto.num);
+		setTodosProductos(resultado);
+	};
+
 	return (
 		<>
 			<div className='header'>
@@ -37,7 +47,7 @@ function Header({todosProductos, setTodosProductos, total, setTotal, cantidadPro
 												<span className="precio-producto-carrito">{producto.precio} €</span>
 											</div>
 											<svg
-												xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon-close">
+												xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon-close" onClick={() => borrarHandler(producto)}>
 												<path stroke-Linecap="round" stroke-Linejoin="round" d="M6 18L18 6M6 6l12 12"/>
 											</svg>
 										</div>
