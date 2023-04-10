@@ -3,6 +3,8 @@ import './Compra.css';
 import { Alert } from 'bootstrap';
 import Producto from '../Products/Producto';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 const Compra = ({ todosProductos, setTodosProductos, total, setTotal, cantidadProducto, setCantidadProducto }) => {
 
     const [activo, setActivo] = useState(false);
@@ -26,12 +28,10 @@ const Compra = ({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 
     return (
         <>
-            <h2>El pedido contiene lo siguiente</h2>
+            <h2>El pedido contiene lo siguiente:</h2>
             
 
-            <div className="count-productos">
-						
-					</div>
+         
 					
 						{console.log("todos length" + todosProductos.length)}
 						{todosProductos.length ? (
@@ -58,10 +58,10 @@ const Compra = ({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 									Total:
 									<span className="total-pagar">{total} €</span>
 								</div>
-								<div><Button variant="danger">CONTINUAR</Button></div>
+								<div><Button variant="danger"><Link to='/formulario'>CONTINUAR</Link></Button></div>
 							</>
 						) : (
-							<p>Carrito vacío</p>
+							<p className="precio-producto-carrito">Carrito vacío</p>
 						)}
 					
         </>

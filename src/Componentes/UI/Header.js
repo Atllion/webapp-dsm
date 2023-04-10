@@ -30,7 +30,7 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 	return (
 		<>
 			<div className='header'>
-				<h1>Tienda de Componetes</h1>
+				<h1>Tienda de Componentes</h1>
 
 				<div className="container-icon" onClick={() => setActivo(!activo)}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor" viewBox="-1 -2 16 16" className='icon-cart'>
@@ -66,8 +66,9 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 								</div>
 								<div><Button variant="danger"><Link to='/compra'>REALIZAR PEDIDO</Link></Button></div>
 							</>
-						) : (
-							<p>Carrito vacío</p>
+						) : (<><p></p>
+							<p className="precio-producto-carrito">Carrito vacío</p>
+							</>
 						)}
 					</div>
 				</div>

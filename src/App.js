@@ -10,6 +10,7 @@ import Contact from './Pages/Contact';
 import Pedidos from './Pages/Pedidos';
 import ErrorPage from './Pages/ErrorPage';
 import Compra from './Pages/Compra';
+import Formulario from './Pages/Formulario';
 
 function App() {
   const [todosProductos, setTodosProductos] = useState([]);
@@ -69,6 +70,7 @@ function App() {
         <Route path='/productos' element={contenidoProductos}/>
         <Route path='/compra' element={contenidoCompra}/>
         <Route path='*' element={<ErrorPage/>}/>
+        <Route path='/formulario' element={<Formulario/>}/>
       </Routes>
       
       <Footer />
