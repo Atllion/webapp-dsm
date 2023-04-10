@@ -11,6 +11,7 @@ import Pedidos from './Pages/Pedidos';
 import ErrorPage from './Pages/ErrorPage';
 import Compra from './Pages/Compra';
 import Formulario from './Pages/Formulario';
+import NuevoPedido from './Pages/NuevoPedido';
 
 function App() {
   const [todosProductos, setTodosProductos] = useState([]);
@@ -60,6 +61,11 @@ function App() {
  <>
  <Compra total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
 </>
+
+const contenidoFormulario=
+<>
+<Formulario total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+</>
   return (
     <div>
       <Header total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
@@ -70,7 +76,8 @@ function App() {
         <Route path='/productos' element={contenidoProductos}/>
         <Route path='/compra' element={contenidoCompra}/>
         <Route path='*' element={<ErrorPage/>}/>
-        <Route path='/formulario' element={<Formulario/>}/>
+        <Route path='/formulario' element={contenidoFormulario}/>
+        <Route path='/nuevoPedido' element={<NuevoPedido/>}/>
       </Routes>
       
       <Footer />

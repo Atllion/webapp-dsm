@@ -61,7 +61,7 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 									))}
 								</div>
 								<div className="cart-total">
-									Total:
+								<span className="precio-producto-carrito">Total:</span>
 									<span className="total-pagar">{total} €</span>
 								</div>
 								<div><Button variant="danger"><Link to='/compra'>REALIZAR PEDIDO</Link></Button></div>

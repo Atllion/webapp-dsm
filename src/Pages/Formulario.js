@@ -6,21 +6,32 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert'
 
 
-
-const Formulario = () => {
+const Formulario = ({ todosProductos, setTodosProductos, total, setTotal, cantidadProducto, setCantidadProducto }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [name, setName] = useState('');
     const [apellido, setApellido] = useState('');
     const [direccion, setDireccion] = useState('');
-
+    const navegar=useNavigate();
     const nameHandler = (event) => {
         setName(event.target.value);
     }
 
+    const [activo, setActivo] = useState(false);
+
+	{
+		if (todosProductos.length > 0) {
+			{ console.log("siiuuuuu") }
+		} else console.log("siiuuuuu" + todosProductos.length)
+	}
+
+	
+    
     const apellidoHandler = (event) => {
         setApellido(event.target.value);
     }
@@ -29,20 +40,29 @@ const Formulario = () => {
         setDireccion(event.target.value);
     }
 
-
+	const vaciarCarritoHandler = () => {
+		setTodosProductos([]);
+		setTotal(0);
+		setCantidadProducto(0);
+	};
 
     const submitHandler = (event) => {
         event.preventDefault();
-        const producto = {
+        const venta = {
             id: 1,
             name: name,
             direccion: direccion,
 
         }
+        console.log(venta);
+        setShow(false);
+        vaciarCarritoHandler();
 
+navegar('/nuevoPedido');
     }
 
     return (
+        <p>
         <Form onSubmit={submitHandler}>
             <Container>
                 <Row>
@@ -74,14 +94,14 @@ const Formulario = () => {
 
                         <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>fINALIZAR COMPRA</Modal.Title>
+                                <Modal.Title>FINALIZAR COMPRA</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>Confirmar compra</Modal.Body>
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
+                                <Button style={{ width: "100px", height: "40px",}} variant="secondary" onClick={handleClose}>
                                     NO
                                 </Button>
-                                <Button variant="danger" onClick={handleClose}>
+                                <Button style={{ width: "100px", height: "40px",}} variant="danger" onClick={ submitHandler}>
                                     SI
                                 </Button>
                             </Modal.Footer>
@@ -90,6 +110,8 @@ const Formulario = () => {
                 </Row>
             </Container>
         </Form>
+
+              </p>
     )
 }
 

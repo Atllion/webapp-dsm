@@ -157,8 +157,8 @@ function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCant
                             <h2>{producto.nombre}</h2>
                             <p className='precio'>{producto.precio} €</p>
 
-                            <button className='info-producto-boton' variant="primary" id={producto.id} onClick={() => addCarrito(producto)}>+</button>
-                            <button className='info-producto-boton' variant="primary" id={producto.id} onClick={() => restarCarrito(producto)}>--</button>
+                            <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="success" id={producto.id} onClick={() => addCarrito(producto)}>+  </Button>
+                            <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="warning" id={producto.id} onClick={() => restarCarrito(producto)}>—</Button>
 
                         </div>
                     </div>
