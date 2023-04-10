@@ -3,7 +3,13 @@ import Producto from './Products/Producto';
 import { useState } from 'react';
 import Header from './Componentes/UI/Header';
 import Footer from './Componentes/UI/Footer'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import Contact from './Pages/Contact';
+import Pedidos from './Pages/Pedidos';
+import ErrorPage from './Pages/ErrorPage';
+import Compra from './Pages/Compra';
 
 function App() {
   const [todosProductos, setTodosProductos] = useState([]);
@@ -43,10 +49,28 @@ function App() {
       ]
     )
   */
+
+  const contenidoProductos= 
+  <>
+    <Producto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+  </>
+
+  const contenidoCompra=
+ <>
+ <Compra total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+</>
   return (
     <div>
       <Header total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
-      <Producto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/pedidos'element={<Pedidos/>}/>
+        <Route path='/contacto' element={<Contact/>}/>
+        <Route path='/productos' element={contenidoProductos}/>
+        <Route path='/compra' element={contenidoCompra}/>
+        <Route path='*' element={<ErrorPage/>}/>
+      </Routes>
+      
       <Footer />
     </div>
   );
