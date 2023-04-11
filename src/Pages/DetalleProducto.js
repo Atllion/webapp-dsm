@@ -1,26 +1,30 @@
 import { useParams } from "react-router-dom";
 import { Datos } from '../Datos';
 import './DetalleProducto.css';
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
-const DetalleProducto = ({ todosProductos, setTodosProductos, cantidadProducto, setCantidadProducto, total, setTotal }) => {
-
+const DetalleProducto = ({ todosProductos, setTodosProductos, cantidadProducto, setCantidadProducto, total, setTotal, products, setTodosProducts   }) => {
+    
     const parametros = useParams();
+    
 
     return (
         <>
-            <h2>Detalle del productos: {parametros.id}</h2>
+            <h2>Detalle del producto: </h2>
             <p>Información del producto.</p>
 
 
             <div >
-
-                {Datos.map(producto => (
+            
+                {products.map(producto => (
                     <div key={producto.id}>
-                        {console.log("prodcuntoid" + producto.id + "parametroid" + parametros.id)}
-                        {producto.id === Number(parametros.id) ? (
-                            <p>{console.log("prodcuntoid" + producto.id + "parametroid" + parametros.id)}
+                        {console.log("productoid"+producto.id+" parametrosid"+ parametros.id)}
+                        {console.log(producto.id)}
+                        {Number(producto.id) === Number(parametros.id) ? (
+                            <p>
                             <figure>
-                            <center> <img alt="centered image" className="mediana" src={producto.urlImagen} alt={producto.nombre} /></center>
+                            <center> <img alt="centered image" className="mediana" src={producto.urlImagen}  /></center>
                             </figure>
                                 <div className='info-producto'>
                                     <h2>{producto.nombre} </h2>
@@ -32,10 +36,13 @@ const DetalleProducto = ({ todosProductos, setTodosProductos, cantidadProducto, 
                         
 
                     </div>
+                    
                 ))}
 
 
+
             </div>
+            <Button style={{ width: "200px", height: "40px", }}  variant="dark" ><Link to='/productos'>VOLVER</Link></Button>
         </>
     )
 }

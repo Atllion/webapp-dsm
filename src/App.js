@@ -18,6 +18,7 @@ function App() {
   const [todosProductos, setTodosProductos] = useState([]);
   const [total, setTotal] = useState(0);
   const [cantidadProducto, setCantidadProducto] = useState(0);
+  const [products, setProducts] = useState([]);
   /*
     const [productos, setProductos] = useState(
       [
@@ -55,26 +56,26 @@ function App() {
 
   const contenidoProductos= 
   <>
-    <Producto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+    <Producto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} products={products} setProducts={setProducts}/>
   </>
 
   const contenidoCompra=
  <>
- <Compra total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+ <Compra total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} products={products} setProducts={setProducts}/>
 </>
 
 const contenidoFormulario=
 <>
-<Formulario total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+<Formulario total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} products={products} setProducts={setProducts}/>
 </>
 
 const contenidoDetalleProducto=
 <>
-<DetalleProducto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+<DetalleProducto total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} products={products} setProducts={setProducts}/>
 </>
   return (
     <div>
-      <Header total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} />
+      <Header total={total} setTotal={setTotal} cantidadProducto={cantidadProducto} setCantidadProducto={setCantidadProducto} todosProductos={todosProductos} setTodosProductos={setTodosProductos} products={products} setProducts={setProducts}/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/pedidos'element={<Pedidos/>}/>

@@ -7,10 +7,11 @@ import { Button } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 
-function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadProducto, setCantidadProducto }) {
+function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadProducto, setCantidadProducto, products, setTodosProducts }) {
 	//
 	const [activo, setActivo] = useState(false);
 
+    
 	{
 		if (todosProductos.length > 0) {
 			{ console.log("siiuuuuu") }

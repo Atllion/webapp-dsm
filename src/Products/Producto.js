@@ -1,5 +1,5 @@
 import './Producto.css'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -8,11 +8,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Datos } from '../Datos';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
-function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCantidadProducto, total, setTotal }) {
+function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCantidadProducto, total, setTotal, products, setProducts  }) {
 
     const [resultado, setResultado] = useState(0);
+    
     const [numero1, setNumero1] = useState(0);
     const [enviarCarritoHandler, setEnviarCarritoHandler] = useState('');
     let cantidadInicial = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -96,7 +98,7 @@ function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCant
     }
 
     const restarCarrito = producto => {
-        let resta,resta1,resta2;
+        let resta, resta1, resta2;
         const productosAux = todosProductos.map(item =>
             item.id === producto.id
                 ? { resta1: item.num }
@@ -104,52 +106,80 @@ function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCant
         );
         const cantidadess = todosProductos.map(c => {
             if (c.id === producto.id) {
-                console.log("ccc"+c+producto.id+"cid"+c.id)
+                console.log("ccc" + c + producto.id + "cid" + c.id)
                 if (c.num >= 1) {
-                    console.log("c.num"+c.num);
-                    resta=true
+                    console.log("c.num" + c.num);
+                    resta = true
                     return c - 1;
-                } else return resta=false
+                } else return resta = false
 
-            } else {console.log("c"+c+producto.id)
+            } else {
+                console.log("c" + c + producto.id)
                 // El resto no ha cambiadoconsole.log("c"+c)
                 return c;
-            }console.log("c"+c)
+            } console.log("c" + c)
         });
-        
 
-        console.log("Valor resta: " + resta + " NUM: " + producto.num+"total"+total)
 
-        if (resta === true) {if (todosProductos.find(item => item.id === producto.id)) {
-            const productos = todosProductos.map(item =>
-                item.id === producto.id
-                    ? { ...item, num: item.num - 1, resta: item.num-1 }
-                    : item
-            );
-            console.log("Valor restaaaaa: " + resta + " NUM: " + todosProductos.num)
+        console.log("Valor resta: " + resta + " NUM: " + producto.num + "total" + total)
+
+        if (resta === true) {
+            if (todosProductos.find(item => item.id === producto.id)) {
+                const productos = todosProductos.map(item =>
+                    item.id === producto.id
+                        ? { ...item, num: item.num - 1, resta: item.num - 1 }
+                        : item
+                );
+                console.log("Valor restaaaaa: " + resta + " NUM: " + todosProductos.num)
+                setTotal(total - producto.precio * producto.num);
+                setCantidadProducto(cantidadProducto - producto.num);
+                console.log("total addcarrtio:" + cantidadProducto);
+                return setTodosProductos([...productos]);
+            }
+
+            console.log("despues set todosP" + todosProductos)
             setTotal(total - producto.precio * producto.num);
             setCantidadProducto(cantidadProducto - producto.num);
-            console.log("total addcarrtio:" + cantidadProducto);
-            return setTodosProductos([...productos]);
+            setTodosProductos([...todosProductos, producto]);
+            console.log("despues set todosP" - total)
         }
-
-        console.log("despues set todosP" + todosProductos)
-        setTotal(total - producto.precio * producto.num);
-        setCantidadProducto(cantidadProducto - producto.num);
-        setTodosProductos([...todosProductos, producto]);
-        console.log("despues set todosP" - total)}
     }
 
     const addCarrito2 = producto => {
         setTodosProductos([...todosProductos, producto])
+
     }
 
-    console.log(todosProductos)
+    //console.log(todosProductos)
+
+
+    useEffect(() => {
+        axios.get('https://webapp-dsm-default-rtdb.europe-west1.firebasedatabase.app/productos.json')
+            .then((response) => {
+                //console.log(response.data);
+                let arrayProductos = [];
+                for (let key in response.data) {
+                    arrayProductos.push({
+                        id: key,
+                        nombre: response.data[key].nombre,
+                        precio: response.data[key].precio,
+                        num: response.data[key].num,
+                        urlImagen: response.data[key].urlImagen,
+                        descripcion: response.data[key].descripcion
+                    })
+                }
+                //console.log(arrayProductos);
+                setProducts(arrayProductos);
+            }).catch((error) => {
+                alert('Se ha producido un error');
+            })
+    }, []);
+
     return (
         <div>
             <div className='container-productos'>
 
-                {Datos.map(producto => (
+                {products.map(producto => (
                     <div className='item' key={producto.id}>
                         <figure>
                             <img src={producto.urlImagen} alt={producto.nombre} />
@@ -158,9 +188,9 @@ function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCant
                             <h2>{producto.nombre} </h2>
                             <p className='precio'>{producto.precio} €</p>
 
-                            <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="success" id={producto.id} onClick={() => addCarrito(producto)}>+  </Button>
-                            <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="warning" id={producto.id} onClick={() => restarCarrito(producto)}>—</Button>
-                            <Button style={{ width: "200px", height: "40px",}} className='info-producto-boton' variant="outline-dark" id={producto.id} onClick={() => restarCarrito(producto)}><Link to={`${producto.id}`}>Ver detalles</Link></Button>
+                            <Button style={{ width: "100px", height: "40px", }} className='info-producto-boton' variant="success" id={producto.id} onClick={() => addCarrito(producto)}>+  </Button>
+                            <Button style={{ width: "100px", height: "40px", }} className='info-producto-boton' variant="warning" id={producto.id} onClick={() => restarCarrito(producto)}>—</Button>
+                            <Button style={{ width: "200px", height: "40px", }} className='info-producto-boton' variant="outline-dark" id={producto.id} ><Link to={`${producto.id}`}>Ver detalles</Link></Button>
                         </div>
                     </div>
                 ))}
