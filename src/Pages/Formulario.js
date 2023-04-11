@@ -23,6 +23,7 @@ const Formulario = ({ todosProductos, setTodosProductos, total, setTotal, cantid
         setName(event.target.value);
     }
 
+
     const [activo, setActivo] = useState(false);
 
     {
@@ -53,12 +54,13 @@ const Formulario = ({ todosProductos, setTodosProductos, total, setTotal, cantid
             id: 1,
             name: name,
             direccion: direccion,
-            apellido: apellido
+            apellido: apellido,
+            total: total
         }
-        console.log(venta);
-        axios.post('https://webapp-dsm-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json',venta)
+        console.log(total);
+        axios.post('https://webapp-dsm-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json',venta   )
         .then((response)=>{
-            alert('El producto se ha insertado en la base de datos');
+            
         })
         setShow(false);
         vaciarCarritoHandler();
