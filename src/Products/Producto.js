@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Datos } from '../Datos';
+import { Link } from 'react-router-dom';
 
 
 function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCantidadProducto, total, setTotal }) {
@@ -154,12 +155,12 @@ function Producto({ todosProductos, setTodosProductos, cantidadProducto, setCant
                             <img src={producto.urlImagen} alt={producto.nombre} />
                         </figure>
                         <div className='info-producto'>
-                            <h2>{producto.nombre}</h2>
+                            <h2>{producto.nombre} </h2>
                             <p className='precio'>{producto.precio} €</p>
 
                             <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="success" id={producto.id} onClick={() => addCarrito(producto)}>+  </Button>
                             <Button style={{ width: "100px", height: "40px",}} className='info-producto-boton' variant="warning" id={producto.id} onClick={() => restarCarrito(producto)}>—</Button>
-
+                            <Button style={{ width: "200px", height: "40px",}} className='info-producto-boton' variant="outline-dark" id={producto.id} onClick={() => restarCarrito(producto)}><Link to={`${producto.id}`}>Ver detalles</Link></Button>
                         </div>
                     </div>
                 ))}

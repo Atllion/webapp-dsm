@@ -15,7 +15,7 @@ const NuevoPedido = () => {
             Enviaremos el producto en el menor tiempo posible.
           </Alert>
         ))}
-        <Button variant="danger" onClick><Link to='/productos'>Nuevo Pedido</Link></Button>
+        <Button style={{ width: "200px", height: "40px",}} variant="danger" ><Link to='/productos'>COMPRAR</Link></Button>
       </>
     )
 }

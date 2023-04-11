@@ -86,7 +86,7 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 					<Nav.Link className='dropdown-item' menuVariant='dark' eventKey="pedidos"  ><Link to='/pedidos' style={{ textDecoration: 'none' }}><li>PEDIDOS</li></Link></Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link className='dropdown-item' menuVariant='dark' eventKey="compra"  ><Link to='/compra' style={{ textDecoration: 'none' }}><li>Compra</li></Link></Nav.Link>
+					<Nav.Link className='dropdown-item' menuVariant='dark' eventKey="compra"  ><Link to='/compra' style={{ textDecoration: 'none' }}><li>COMPRA</li></Link></Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link className='dropdown-item' menuVariant='dark' eventKey="contact"  ><Link to='/contacto' style={{ textDecoration: 'none' }}><li>CONTACTO</li></Link></Nav.Link>
