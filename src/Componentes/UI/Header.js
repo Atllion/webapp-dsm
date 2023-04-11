@@ -11,7 +11,7 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 	//
 	const [activo, setActivo] = useState(false);
 
-    
+
 	{
 		if (todosProductos.length > 0) {
 			{ console.log("siiuuuuu") }
@@ -52,7 +52,7 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 												<span className="precio-producto-carrito">{producto.num}u</span>
 												<span className="precio-producto-carrito">{producto.nombre} </span>
 												<span className="precio-producto-carrito">{producto.precio} €/u</span>
-												<span className="precio-producto-carrito">{producto.num*producto.precio} €</span>
+												<span className="precio-producto-carrito">{producto.num * producto.precio} €</span>
 											</div>
 											<svg
 												xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="icon-close" onClick={() => borrarHandler(producto)}>
@@ -62,14 +62,14 @@ function Header({ todosProductos, setTodosProductos, total, setTotal, cantidadPr
 									))}
 								</div>
 								<div className="cart-total">
-								<span className="precio-producto-carrito">Total:</span>
+									<span className="precio-producto-carrito">Total:</span>
 									<span className="total-pagar">{total} €</span>
 								</div>
 								<div><Button variant="danger"><Link to='/compra'>REALIZAR PEDIDO</Link></Button></div>
 							</>
 						) : (<><p></p>
 							<p className="precio-producto-carrito">Carrito vacío</p>
-							</>
+						</>
 						)}
 					</div>
 				</div>
